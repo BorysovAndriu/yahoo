@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Yahoo Testing Suite" verbose="1" parallel="false">
+    <test name="Login Test">
+        <classes>
+            <class name="tests.TestLoginYahoo"></class>
+        </classes>
+    </test>
+</suite>
