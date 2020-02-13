@@ -1,6 +1,8 @@
 package page;
 
-import org.openqa.selenium.By;
+import DriverMaganer.ManagerConfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +18,9 @@ public class YahooLoginPage {
         PageFactory.initElements(driver, this);
     }
 
+    ManagerConfig user = new ManagerConfig();
+    private Logger log = LogManager.getLogger(getClass());
+
     @FindBy(xpath = "//a[contains(@data-ylk,'mKey:signin_click')]")
     public WebElement buttonLogin;
 
@@ -29,12 +34,15 @@ public class YahooLoginPage {
 
         //Click to login
         buttonLogin.click();
+        log.info("click on button " + buttonLogin.getText());
 
         //Fill email
-        fieldEmail.sendKeys(email, Keys.ENTER);
+        fieldEmail.sendKeys(user.getProperty(email), Keys.ENTER);
+        log.info("fill email " + user.getProperty(email));
 
         //Fill password
-        fieldPassword.sendKeys(password, Keys.ENTER);
+        fieldPassword.sendKeys(user.getProperty(password), Keys.ENTER);
+        log.info("fill password " + user.getProperty(password));
 
         try {
             Thread.sleep(3000);
@@ -42,5 +50,4 @@ public class YahooLoginPage {
             e.printStackTrace();
         }
     }
-
 }

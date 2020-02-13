@@ -2,9 +2,12 @@ package tests;
 
 import DriverMaganer.TestBase;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import page.UserCabinetPage;
 import page.YahooLoginPage;
+
+@Listeners(tests.MyListener.class)
 
 public class TestLoginYahoo extends TestBase {
 
@@ -18,7 +21,7 @@ public class TestLoginYahoo extends TestBase {
         openUrl(mainPageYahoo);
 
         //Login sender
-        loginSender.login(emailSender, passwordSender);
+        loginSender.login("email.sender", "password.sender");
 
         UserCabinetPage senderCabinet = new UserCabinetPage(driver);
         //Create email
