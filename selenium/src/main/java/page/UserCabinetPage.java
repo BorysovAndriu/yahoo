@@ -1,5 +1,7 @@
 package page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class UserCabinetPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    private Logger log = LogManager.getLogger(getClass());
 
     @FindBy(xpath = "//a[contains(@data-test-id,'compose-button')]")
     public WebElement buttonCreateMessage;
@@ -49,16 +52,20 @@ public class UserCabinetPage {
     public void createMessage(String email, String subjectText, String messageText){
         //Click create email
         buttonCreateMessage.click();
+        log.info("click on button - " + buttonCreateMessage.getText());
 
         //Fill senders email address
         fieldEmailAddress.sendKeys(email, Keys.ENTER);
+        log.info("fill email recierver - " + email);
 
         //Fill field subject
         fieldSubject.sendKeys(subjectText);
+        log.info("fill subjectText  - " + subjectText);
 
         //Fill field message
         fieldMessageText.click();
         fieldMessageText.sendKeys(messageText);
+        log.info("fill messageText  - " + messageText);
 
     }
 

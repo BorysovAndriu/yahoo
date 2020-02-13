@@ -51,5 +51,4 @@ public class TestBase {
     public void openUrl(String url){
         driver.navigate().to(url);
     }
-
 }
